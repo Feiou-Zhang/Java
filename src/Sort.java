@@ -59,4 +59,42 @@ public class Sort {
             }
         }
     }
+    public void sort(int[] a) {
+        //edge case
+        if(a == null || a.length < 2) {
+            return;
+        }
+        quicksort(a, 0, a.length - 1);
+
+    }
+    public void quicksort(int[] a, int lo, int hi) {
+        if (lo >=  hi) {
+            return;
+        }
+        int partitionPoint = partition(a, lo, hi);
+        quicksort(a, lo, partitionPoint - 1);
+        quicksort(a, partitionPoint + 1, hi);
+    }
+    public int partition(int[] a, int lo, int hi) {
+        int pivot = a[(hi - lo) / 2 + lo];
+        while (lo <= lo) {
+            while (a[lo] < pivot) {
+                ++lo;
+            }
+            while (a[hi] > pivot) {
+                --hi;
+            }
+            if (lo <= hi) {
+                swap(a, lo, hi);
+                ++lo;
+                --hi;
+            }
+        }
+        return lo; //or hi
+    }
+    public void swap (int[] a, int lo, int hi) {
+        int tem = a[lo];
+        a[lo] = a[hi];
+        a[hi] = tem;
+    }
 }
